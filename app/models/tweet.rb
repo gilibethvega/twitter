@@ -4,7 +4,7 @@ class Tweet < ApplicationRecord
   has_many :retweets, inverse_of: :source_tweet, class_name: 'Tweet', foreign_key: 'retweet_id'
   
   validates :content, absence: true, if: :source_tweet, length: { maximum: 140 }
-  validates :retweet_id, uniqueness: { scope: :user_id }
+  # validates :retweet_id, uniqueness: { scope: :user_id }
 
   def content
     if source_tweet
@@ -21,4 +21,13 @@ class Tweet < ApplicationRecord
       super
     end
   end
+
+  def n_retweet
+    Tweet.where.not(retweet_id: nil).where(retweet_id: self.retweet_id).count
+  end
+
+  def retweeted?(user)
+    !!self.retweets.find{|tweet| tweet.user_id == user.id}
+  end
+    
 end
