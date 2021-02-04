@@ -21,6 +21,8 @@ class Tweet < ApplicationRecord
       super
     end
   end
+  
+  # depe
 
   def n_retweet
     Tweet.where.not(retweet_id: nil).where(retweet_id: self.retweet_id).count
