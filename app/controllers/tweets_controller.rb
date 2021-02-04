@@ -57,6 +57,15 @@ class TweetsController < ApplicationController
     end
   end
 
+  def retweet
+    retweet = @tweet.retweets.build(user: current_user)
+    if retweet.save
+      redirect_to retweet, notice: 'Retweeted!'
+    else
+      redirect_to root_path, alert: 'Can not retweet'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
@@ -65,7 +74,7 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:content)
+      params.require(:tweet).permit(:content, :user_id, :retweet_id)
     end
 
 end
