@@ -5,8 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Content</th>
+      <th></th>
       <th>User</th>
+      <th>Content</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +15,9 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.content %></td>
+        <td><img src="<%= tweet.user.photo_url %>" alt=user_photo width='40' height='40'></td>
         <td><%= tweet.user %></td>
+        <td><%= tweet.content %></td> 
         <td><%= link_to 'Show', tweet %></td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
