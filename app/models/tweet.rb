@@ -8,28 +8,19 @@ class Tweet < ApplicationRecord
 
   def content
     if source_tweet
-      source_tweet.content
+      'RT @'+ (source_tweet.user).to_s + ': ' + source_tweet.content
     else
       super
-    end
+    end 
   end
-  
+ 
   def retweet_count
-    Tweet.where.not(retweet_id: nil).where(retweet_id: self.retweet_id).count
+    Tweet.where.not(retweet_id: nil).where(retweet_id: self.id).count
   end
 
   def retweeted?(user)
     !!self.retweets.find{|tweet| tweet.user_id == user.id}
   end
   
-  # depe
-
-  def n_retweet
-    Tweet.where.not(retweet_id: nil).where(retweet_id: self.retweet_id).count
-  end
-
-  def retweeted?(user)
-    !!self.retweets.find{|tweet| tweet.user_id == user.id}
-  end
     
 end

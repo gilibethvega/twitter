@@ -6,15 +6,8 @@ class TweetsController < ApplicationController
     retweet = Tweet.new(retweet_id: @tweet.id, user: current_user)
     if retweet.save
       redirect_to tweets_path(@tweet), notice: 'Retweetted!'
-    else
-      redirect_to tweets_path(@tweet), alert: 'Cannot retweet'
-    end
-  end
-
-  def retweet
-    retweet = Tweet.new(retweet_id: @tweet.id, user: current_user)
-    if retweet.save
-      redirect_to tweets_path(@tweet), notice: 'Retweetted!'
+    elsif (retweet.content.length) > 140
+      redirect_to tweets_path(@tweet), alert: 'Cannot retweet because your tweet have more than 140 characters...'
     else
       redirect_to tweets_path(@tweet), alert: 'Cannot retweet'
     end
