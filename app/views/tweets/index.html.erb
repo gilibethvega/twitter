@@ -9,6 +9,7 @@
       <th>User</th>
       <th>Content</th>
       <th>RT</th>
+      <th>Like</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,8 +25,18 @@
             <%= button_to "Retweet", retweet_tweet_path(tweet), disabled:true %>
             <%= tweet.retweet_count %>
           <% else %>
-          <%= button_to "Retweet", retweet_tweet_path(tweet)%>
+            <%= button_to "Retweet", retweet_tweet_path(tweet)%>
             <%= tweet.retweet_count %>
+          <% end %>
+          <% end %>
+        </td>
+        <td><% if user_signed_in? %>
+          <% if tweet.liked?(current_user) %>
+            <%= button_to "Like", like_tweet_path(tweet), disabled:true %>
+            <%= tweet.like_count %>
+          <% else %>
+            <%= button_to "Like", like_tweet_path(tweet) %>
+            <%= tweet.like_count %>
           <% end %>
           <% end %>
         </td>

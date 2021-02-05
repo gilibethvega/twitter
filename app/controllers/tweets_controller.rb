@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: %i[ show edit update destroy retweet ]
+  before_action :set_tweet, only: %i[ show edit update destroy retweet like ]
   before_action :authenticate_user!
 
   def retweet
@@ -10,6 +10,14 @@ class TweetsController < ApplicationController
       redirect_to tweets_path(@tweet), alert: 'Cannot retweet because your tweet have more than 140 characters...'
     else
       redirect_to tweets_path(@tweet), alert: 'Cannot retweet'
+    end
+  end
+  def like
+    like = Like.new(tweet_id: @tweet.id, user_id: current_user.id)
+    if like.save
+      redirect_to tweets_path(@tweet)
+    else
+      redirect_to tweets_path(@tweet), alert: 'Error in your like action'
     end
   end
   # GET /tweets or /tweets.json

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :likes
   resources :tweets do
     member do
       post :retweet
+      post :like
     end
   end
   devise_for :users, controllers: { 

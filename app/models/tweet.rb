@@ -2,6 +2,7 @@ class Tweet < ApplicationRecord
   belongs_to :user
   belongs_to :source_tweet, optional: true, inverse_of: :retweets, class_name: 'Tweet', foreign_key: 'retweet_id'
   has_many :retweets, inverse_of: :source_tweet, class_name: 'Tweet', foreign_key: 'retweet_id'
+  has_many :like, dependent: :destroy
   
   validates :content, length: { maximum: 140 }
   # validates :retweet_id, uniqueness: { scope: :user_id }
@@ -21,6 +22,11 @@ class Tweet < ApplicationRecord
   def retweeted?(user)
     !!self.retweets.find{|tweet| tweet.user_id == user.id}
   end
-  
+  def liked?(user)
+    !!self.like.find{|like| like.user_id == user.id}
+  end
+  def like_count
+    Like.where(tweet_id: id).pluck(:tweet_id).count
+  end
     
 end
