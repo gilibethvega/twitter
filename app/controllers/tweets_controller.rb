@@ -1,6 +1,15 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only: %i[ show edit update destroy retweet ]
   before_action :authenticate_user!
-  before_action :set_tweet, only: %i[ show edit update destroy ]
+
+  def retweet
+    retweet = Tweet.new(retweet_id: @tweet.id, user: current_user)
+    if retweet.save
+      redirect_to tweets_path(@tweet), notice: 'Retweetted!'
+    else
+      redirect_to tweets_path(@tweet), alert: 'Cannot retweet'
+    end
+  end
 
   # GET /tweets or /tweets.json
   def index
@@ -54,15 +63,6 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tweets_url, notice: "Tweet was successfully destroyed." }
       format.json { head :no_content }
-    end
-  end
-
-  def retweet
-    retweet = @tweet.retweets.build(user: current_user)
-    if retweet.save
-      redirect_to retweet, notice: 'Retweeted!'
-    else
-      redirect_to root_path, alert: 'Can not retweet'
     end
   end
 
