@@ -1,6 +1,15 @@
 class TweetsController < ApplicationController
+  before_action :set_tweet, only: %i[ show edit update destroy retweet ]
   before_action :authenticate_user!
-  before_action :set_tweet, only: %i[ show edit update retweet destroy ]
+
+  def retweet
+    retweet = Tweet.new(retweet_id: @tweet.id, user: current_user)
+    if retweet.save
+      redirect_to tweets_path(@tweet), notice: 'Retweetted!'
+    else
+      redirect_to tweets_path(@tweet), alert: 'Cannot retweet'
+    end
+  end
 
   def retweet
     retweet = Tweet.new(retweet_id: @tweet.id, user: current_user)
