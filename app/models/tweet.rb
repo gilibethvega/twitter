@@ -25,6 +25,12 @@ class Tweet < ApplicationRecord
   def liked?(user)
     !!self.like.find{|like| like.user_id == user.id}
   end
+  def remove_like(user)
+    Like.where(user: user, tweet:self).first.destroy
+  end
+  def add_like(user)
+    Like.create(user: user, tweet:self)
+  end
   def like_count
     Like.where(tweet_id: id).pluck(:tweet_id).count
   end

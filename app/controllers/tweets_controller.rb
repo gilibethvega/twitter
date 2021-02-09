@@ -13,8 +13,12 @@ class TweetsController < ApplicationController
     end
   end
   def like
-    like = Like.new(tweet_id: @tweet.id, user_id: current_user.id)
-    if like.save
+    if @tweet.liked?(current_user)
+      @tweet.remove_like(current_user)
+    else
+      @tweet.add_like(current_user)
+    end
+    if current_user.present?
       redirect_to tweets_path(@tweet)
     else
       redirect_to tweets_path(@tweet), alert: 'Error in your like action'
@@ -22,7 +26,7 @@ class TweetsController < ApplicationController
   end
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all.page(params[:page])
+    @tweets = Tweet.all.order('created_at DESC').page(params[:page])
   end
 
   # GET /tweets/1 or /tweets/1.json
