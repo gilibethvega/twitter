@@ -40,7 +40,7 @@
           <% end %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', tweet %></td>
+        <td><%= link_to time_ago_in_words(tweet.created_at), tweet %> ago</td>
         <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
         <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
