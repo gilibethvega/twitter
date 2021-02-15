@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Estilos de application*/
 body {
   margin: 0px;
  }
@@ -20,7 +22,14 @@ a:hover {
   background-color:rgba(0, 0, 0, 0)!important;
 }
 .btn-outline-secondary:hover {
-  background-color: #0dcaf0!important;
+  background-color: #659EC7!important;
 }
-
+/* Estilos de Sign in*/
+.sign-in {
+  width: 30%;
+  margin: auto;
+  padding: 40px;
+  background-color: #659EC7;
+  border-radius: 30px;
+}
      
