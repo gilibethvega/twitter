@@ -22,6 +22,28 @@ body {
   background-repeat: repeat-y;
  }
 
+ .btn-primary {
+  color: #fff!important;
+  background-color: #82CAFF!important;
+  border-color: #fff!important;
+ }
+ .btn-primary:hover {
+  border-color: #4d4d4d;
+}
+.navbar-light .navbar-nav .nav-link.active {
+  color: currentColor;
+}
+a:hover {
+  background-color:rgba(0, 0, 0, 0)!important;
+}
+.alert {
+  width: 30%;
+}
+.alert-light {
+  background-color: #E0FFFF;
+  color: #4d4d4d;
+}
+
 /* Estilos de Sign in*/
 .sign-in {
   width: 30%;
@@ -29,6 +51,7 @@ body {
   padding: 40px;
   background-color:#ffffff;
   border-radius: 30px;
-  box-shadow: 2px 2px 2px 2px #a09b9b;
+  box-shadow: 2px 2px 2px 2px #4d4d4d;
+  margin-top: calc(100vh/5);;
 }
      
