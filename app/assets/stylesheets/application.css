@@ -17,19 +17,18 @@
  /* Estilos de application*/
 body {
   margin: 0px;
+  background: url(twitter.png) no-repeat center center;
+  background-size: cover;
+  background-repeat: repeat-y;
  }
-a:hover {
-  background-color:rgba(0, 0, 0, 0)!important;
-}
-.btn-outline-secondary:hover {
-  background-color: #659EC7!important;
-}
+
 /* Estilos de Sign in*/
 .sign-in {
   width: 30%;
   margin: auto;
   padding: 40px;
-  background-color: #659EC7;
+  background-color:#ffffff;
   border-radius: 30px;
+  box-shadow: 2px 2px 2px 2px #a09b9b;
 }
      
