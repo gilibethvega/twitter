@@ -43,6 +43,9 @@ a:hover {
   background-color: #E0FFFF;
   color: #4d4d4d;
 }
+p {
+  font-size: 1rem;
+}
 
 /* Estilos de Sign in y Sign up*/
 .card-twitter {
@@ -54,4 +57,42 @@ a:hover {
   box-shadow: 2px 2px 2px 2px #4d4d4d;
   margin-top: calc(100vh/7);;
 }
-     
+
+/* Estilos de index */
+.tweets-content {
+  width: 90%;
+  margin: auto;
+  padding: 40px;
+  background-color:#ffffff;
+  border-radius: 30px;
+  box-shadow: 1px #4d4d4d;
+  margin-top: calc(100vh/8);
+}
+.button_to {
+  display: inline;
+  width: 20%;
+}
+.like-button, .btn-outline-light:hover, .btn-light:hover {
+  color: #D57F6D;
+  border-color: transparent;
+}
+
+.btn-light  {
+  background-color: transparent!important;
+  border-color: transparent;
+}
+.btn-outline-light, .btn-light:focus {
+  border-color:transparent!important;
+  border-radius: 10px;
+  border-color: transparent;
+  color: #ffffff;
+}
+.btn-outline-light {
+  background-color:#d0d0d0;
+}
+.btn-light:disabled {
+  color: #127c3b;
+}
+.links-tweets {
+  text-align: right!important;
+}

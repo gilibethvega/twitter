@@ -1,61 +1,57 @@
-
-<h1>Tweets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>User</th>
-      <th>Content</th>
-      <th>RT</th>
-      <th>Like</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= image_tag tweet.user.photo_url, :width=> "40", :height=> "40"%></td>
-        <td>@<%= tweet.user %></td>
-        <td><%= tweet.content %></td>
-        <td><% if user_signed_in? %>
-          <% if tweet.retweeted?(current_user) %>
-            <%= button_to "Retweet", retweet_tweet_path(tweet), disabled:true %>
-            <%= tweet.retweet_count %>
-          <% else %>
-            <%= button_to "Retweet", retweet_tweet_path(tweet)%>
-            <%= tweet.retweet_count %>
-          <% end %>
-          <% end %>
-        </td>
-        <td><% if user_signed_in? %>
-          <% if tweet.liked?(current_user) %>
-            <%= button_to "Like", like_tweet_path(tweet)%>
-            <%= tweet.like_count %>
-          <% else %>
-            <%= button_to "Like", like_tweet_path(tweet) %>
-            <%= tweet.like_count %>
-          <% end %>
-          <% end %>
-        </td>
-        <td><%= link_to time_ago_in_words(tweet.created_at), tweet %> ago</td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-
-  
-</table>
-
-<div class="row">
-  <div  class="col-md-8 offset-md-2">
-    <%= link_to_next_page @tweets, 'Mostrar más tweets'%>
-   </div>
+<div class="tweets-content">
+  <h1 class="mx-auto text-center">Timeline</h1>
+    <div class="timeline mx-auto">
+      <% @tweets.each do |tweet| %>
+        <div class="card mb-3 mx-auto">
+          <div class="row no-gutters">
+            <div class="col-md-12">
+              <div class="card-body">
+                <%= image_tag tweet.user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
+                <h5 class="card-title d-inline mx-2">@<%= tweet.user %></h5>
+                <p class="card-text my-4"><%= tweet.content %></p>
+                <% if user_signed_in? %>
+                  <% if tweet.retweeted?(current_user) %>
+                    <%= button_to retweet_tweet_path(tweet), disabled:true, class:"btn btn-light" do %>
+                      <i class="fas fa-retweet"></i>
+                    <% end %>
+                    <%= tweet.retweet_count %>
+                  <% else %>
+                    <%= button_to retweet_tweet_path(tweet),  class:"btn-outline-light" do %>
+                      <i class="fas fa-retweet"></i>
+                    <% end %>
+                    <%= tweet.retweet_count %>
+                  <% end %>
+                <% end %>
+                <% if user_signed_in? %>
+                  <% if tweet.liked?(current_user) %>
+                    <%= button_to like_tweet_path(tweet), class:"btn-light like-button" do %>
+                      <i class="fas fa-heart"></i>
+                    <% end %>
+                    <%= tweet.like_count %>
+                  <% else %>
+                    <%= button_to like_tweet_path(tweet), class:"btn-outline-light unlike-button" do %>
+                      <i class="fas fa-heart"></i>
+                    <% end %>
+                    <%= tweet.like_count %>
+                  <% end %>
+                <% end %>
+                <div class= "links-tweets">
+                  <p class="card-text d-inline mx-2"><small class="text-muted"><%= link_to time_ago_in_words(tweet.created_at), tweet %> ago</small></p>
+                  <%= link_to 'Edit', edit_tweet_path(tweet), class:"d-inline mx-2"%>
+                  <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class:"d-inline mx-2"%>
+                </div>   
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <div>
+  <div class="row">
+    <div  class="col-md-8 offset-md-2">
+      <%= link_to_next_page @tweets, 'Mostrar más tweets'%>
+    </div>
+  </div>
 </div>
 
-
-<br>
 
 <%= link_to 'New Tweet', new_tweet_path %>
