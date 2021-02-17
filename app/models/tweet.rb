@@ -3,7 +3,6 @@ class Tweet < ApplicationRecord
   belongs_to :source_tweet, optional: true, inverse_of: :retweets, class_name: 'Tweet', foreign_key: 'retweet_id'
   has_many :retweets, inverse_of: :source_tweet, class_name: 'Tweet', foreign_key: 'retweet_id'
   has_many :like, dependent: :destroy
-  validates :retweet_id, uniqueness: { scope: :user_id }
   
   validates_length_of :content, :within => 1..140, :too_long => "can't be over 140 characters", :too_short => "can't be blank"
   # validates :retweet_id, uniqueness: { scope: :user_id }

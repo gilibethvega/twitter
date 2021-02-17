@@ -76,23 +76,27 @@ p {
   color: #D57F6D;
   border-color: transparent;
 }
-
-.btn-light  {
-  background-color: transparent!important;
-  border-color: transparent;
-}
-.btn-outline-light, .btn-light:focus {
+.btn-like-light, .btn-light:focus {
   border-color:transparent!important;
   border-radius: 10px;
   border-color: transparent;
   color: #ffffff;
+  background-color: #d8d8d8;
 }
-.btn-outline-light {
-  background-color:#d0d0d0;
-}
-.btn-light:disabled {
+.btn-rt:disabled {
   color: #127c3b;
 }
 .links-tweets {
   text-align: right!important;
+}
+.btn-rt {
+  background-color: transparent;
+  border-color: transparent;
+}
+.btn-outline-rt, .btn-rt:focus {
+  border-color:transparent;
+  border-radius: 10px;
+  border-color: transparent;
+  color: #ffffff;
+  background-color: #d8d8d8;
 }
