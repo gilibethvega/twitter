@@ -17,7 +17,7 @@
  /* Estilos de application*/
 body {
   margin: 0px;
-  background: url(twitter.png) no-repeat center center;
+  background-color: #29bdf8!important;
   background-size: cover;
   background-repeat: repeat-y;
  }
@@ -93,7 +93,7 @@ p {
 .btn-rt:disabled {
   color: #127c3b;
 }
-.links-tweets, .new-tweet {
+.links-tweets, .new-tweet, .back-home {
   text-align: right!important;
 }
 .btn-rt {

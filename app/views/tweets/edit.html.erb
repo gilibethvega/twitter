@@ -1,6 +1,18 @@
-<h1>Editing Tweet</h1>
+<div class="tweets-content">
+    <div class="timeline mx-auto">
+        <h1>Edit your tweet</h1>
+        <%= image_tag current_user.photo_url, class:"d-inline rounded-circle", :width=> "60", :height=> "60"%>
+              <h5 class="card-title d-inline mx-2">@<%= current_user.username %></h5>
 
-<%= render 'form', tweet: @tweet %>
-
-<%= link_to 'Show', @tweet %> |
-<%= link_to 'Back', tweets_path %>
+        <%= render 'form', tweet: @tweet %>
+    <div class= "links-tweets-show my-4">
+        <p class="card-text d-inline mx-2"><small class="text-muted"><%= time_ago_in_words(@tweet.created_at) %> </small></p>
+        <% if @tweet.user === current_user %>
+            <%= link_to 'Destroy', @tweet, method: :delete, data: { confirm: 'Are you sure?' }, class:"d-inline mx-2"%>
+        <% end %>
+    </div>
+    <div class="back-home">
+        <p class="btn btn btn-outline-light"><%= link_to 'Back to home', tweets_path %></p>
+    </div>
+    </div>
+</div>
