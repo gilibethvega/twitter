@@ -106,3 +106,7 @@ p {
 .input-tweet {
   width: 100%;
 }
+.card-new-tweet {
+  background-color: #e3f2fd;
+  border-radius: 20px;
+}
