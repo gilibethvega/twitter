@@ -100,3 +100,9 @@ p {
   color: #ffffff;
   background-color: #d8d8d8;
 }
+.content-tweet {
+  margin: 10px auto;
+}
+.input-tweet {
+  width: 100%;
+}

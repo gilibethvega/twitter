@@ -1,6 +1,9 @@
 <div class="tweets-content">
   <h1 class="mx-auto text-center">Timeline</h1>
     <div class="timeline mx-auto">
+      <% if user_signed_in? %>
+        <%= render 'form', tweet: @tweet %>
+      <% end%>
       <% @tweets.each do |tweet| %>
         <div class="card mb-3 mx-auto">
           <div class="row no-gutters">
