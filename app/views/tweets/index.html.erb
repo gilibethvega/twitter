@@ -52,7 +52,9 @@
               <div class= "links-tweets">
                 <p class="card-text d-inline mx-2"><small class="text-muted"><%= link_to time_ago_in_words(tweet.created_at)+' ago', tweet %> </small></p>
                 <% if tweet.user === current_user %>
-                  <%= link_to 'Edit', edit_tweet_path(tweet), class:"d-inline mx-2"%>
+                  <%= link_to edit_tweet_path(tweet), class:"d-inline mx-2" do %>
+                    Edit <i class="fas fa-edit"></i>
+                  <% end %>
                 <% end %>
                 <% if tweet.user === current_user %>
                   <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class:"d-inline mx-2"%>
