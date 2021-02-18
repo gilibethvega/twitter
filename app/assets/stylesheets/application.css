@@ -67,6 +67,7 @@ p {
   border-radius: 30px;
   box-shadow: 1px #4d4d4d;
   margin-top: calc(100vh/8);
+  margin-bottom: calc(100vh/8);
 }
 .button_to {
   display: inline;
@@ -109,4 +110,7 @@ p {
 .card-new-tweet {
   background-color: #e3f2fd;
   border-radius: 20px;
+}
+.more-tweets {
+  background-color: #82CAFF;
 }
