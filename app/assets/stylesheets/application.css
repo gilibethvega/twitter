@@ -86,7 +86,7 @@ p {
 .btn-rt:disabled {
   color: #127c3b;
 }
-.links-tweets {
+.links-tweets, .new-tweet {
   text-align: right!important;
 }
 .btn-rt {

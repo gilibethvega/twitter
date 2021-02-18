@@ -11,17 +11,8 @@
         </ul>
       </div>
     <% end %>
-
-    <div class="card mb-3 mx-auto">
-      <div class="row no-gutters">
-        <div class="col-md-12">
-          <div class="card-body">
-            <%= form.text_field :content, :rows => 2, style: 'width:100%;', class: "input-tweet card-text content-tweet my-4" %>
-            <div class="actions">
-              <%= form.submit %>
-            </div>
-          </div>
-        </div>
-      </div>
+    <%= form.text_area :content, :maxlength =>  140, :rows => 3, class: "input-tweet card-text content-tweet my-4" %>
+    <div class="actions new-tweet">
+      <%= form.submit "New tweet", class:"btn btn-primary px-4 py-2"  %>
     </div>
   <% end %>
