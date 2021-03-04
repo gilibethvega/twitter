@@ -1,5 +1,5 @@
 class AddUserToFriends < ActiveRecord::Migration[5.2]
   def change
-    add_reference :friends, :user_id, foreign_key: true
+    add_reference :friends, :user, foreign_key: true
   end
 end

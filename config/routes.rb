@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { 
     registrations: 'users/registrations' 
   }
+
+  post 'follow/:user_id', to: 'users#follow', as: 'users_follow'
   root 'tweets#index'
+  get 'home/users'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
