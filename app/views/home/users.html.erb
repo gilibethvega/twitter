@@ -1,0 +1,22 @@
+<div class="tweets-content">
+  <div class="timeline mx-auto">
+    <h5 class="mx-auto text-center">All users</h5>
+    <% @users.each do |user| %>
+      <div class="card mb-3 mx-auto">
+        <div class="row no-gutters">
+          <div class="col-md-12">
+            <div class="card-body">
+              <%= image_tag user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
+              <h5 class="card-title d-inline mx-2">@<%= user.username %></h5>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <div>
+  <div class="row text-center">
+    <div  class="mx-auto">
+    </div>
+  </div>
+</div>
