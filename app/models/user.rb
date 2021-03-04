@@ -10,8 +10,8 @@ class User < ApplicationRecord
     username
   end
   def users_followed
-    arr_ids = self.friends.pluck(:friend_id)
-    User.find(arr_ids)
+    find_followers = self.friends.pluck(:friend_id)
+    User.find(find_followers)
   end
 
   def is_following?(user)

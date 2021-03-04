@@ -8,7 +8,16 @@
             <div class="card-body">
               <%= image_tag user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
               <h5 class="card-title d-inline mx-2">@<%= user.username %></h5>
-
+            	<div class="links-tweets">
+								<%= link_to (current_user.is_following?(user) ? "<i class='fas fa-user-minus text-danger fa-5'></i>" : "<i class='fas fa-user-plus text-success fa-5'></i>").html_safe, 
+									users_follow_path(user.id), 
+									class: "follow-btn",
+									'title' => (current_user.is_following?(user) ? "Unfollow" : "Follow"),
+									'data-toggle' => 'tooltip',
+									'data-placement' => 'right',
+									method: :post
+								%>
+            	</div>
             </div>
           </div>
         </div>
