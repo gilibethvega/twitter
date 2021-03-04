@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_05_185053) do
+ActiveRecord::Schema.define(version: 2021_03_04_115146) do
 
   create_table "likes", force: :cascade do |t|
     t.datetime "created_at", null: false
