@@ -17,6 +17,18 @@ class User < ApplicationRecord
   def is_following?(user)
     users_followed.include? (user)
   end
+  def tweets_count
+    Tweet.where(user_id: self).count
+  end
+  def friends_count
+    self.friends.count
+  end
+  def likes_give_it_count
+    self.likes.count
+  end
+  def retweets_give_it_count
+    self.tweets.where.not(retweet_id: nil).count
+  end
 
 end
 
