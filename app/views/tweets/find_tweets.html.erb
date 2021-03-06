@@ -1,20 +1,6 @@
 <div class="tweets-content">
   <div class="timeline mx-auto">
-    <% if user_signed_in? %>
-      <div class="card mb-3 mx-auto card-new-tweet">
-        <div class="row no-gutters">
-          <div class="col-md-12">
-            <div class="card-body">
-              <%= image_tag current_user.photo_url, class:"d-inline rounded-circle", :width=> "60", :height=> "60"%>
-              <h5 class="card-title d-inline mx-2">@<%= current_user.username %></h5>
-              <span class="card-text my-4">What's going on?</span>
-              <%= render 'form', tweet: @tweet %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end%>
-    <h5 class="mx-auto text-center">Last tweets</h5>
+    <h5 class="mx-auto text-center">Find tweets</h5>
     <% @tweets.each do |tweet| %>
       <div class="card mb-3 mx-auto">
         <div class="row no-gutters">
@@ -22,7 +8,7 @@
             <div class="card-body">
               <%= image_tag tweet.user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
               <h5 class="card-title d-inline mx-2">@<%= tweet.user %></h5>
-              <div class="card-text my-4"><%= tweet.content.html_safe %></div>
+              <p class="card-text my-4"><%= tweet.content %></p>
               <% if user_signed_in? %>
                 <% if tweet.retweeted?(current_user) %>
                   <%= button_to retweet_tweet_path(tweet), disabled:true, class:"btn btn-rt" do %>

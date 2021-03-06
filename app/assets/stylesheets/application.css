@@ -120,6 +120,10 @@ p {
 .more-tweets {
   background-color: #82CAFF;
 }
+
+.follow-btn a{
+  font-size-adjust: 30px!important;
+}
 @media (max-width: 1000px) {
   .card-twitter {
     width: 80%;

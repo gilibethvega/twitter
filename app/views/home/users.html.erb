@@ -1,0 +1,31 @@
+<div class="tweets-content">
+  <div class="timeline mx-auto">
+    <h5 class="mx-auto text-center">All users</h5>
+    <% @users.each do |user| %>
+      <div class="card mb-3 mx-auto">
+        <div class="row no-gutters">
+          <div class="col-md-12">
+            <div class="card-body">
+              <%= image_tag user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
+              <h5 class="card-title d-inline mx-2">@<%= user.username %></h5>
+            	<div class="links-tweets">
+								<%= link_to (current_user.is_following?(user) ? "<i class='fas fa-user-minus text-danger fa-5'></i>" : "<i class='fas fa-user-plus text-success fa-5'></i>").html_safe, 
+									users_follow_path(user.id), 
+									class: "follow-btn",
+									'title' => (current_user.is_following?(user) ? "Unfollow" : "Follow"),
+									'data-toggle' => 'tooltip',
+									'data-placement' => 'right',
+									method: :post
+								%>
+            	</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <div>
+  <div class="row text-center">
+    <div  class="mx-auto">
+    </div>
+  </div>
+</div>
