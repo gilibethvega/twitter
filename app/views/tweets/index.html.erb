@@ -22,7 +22,7 @@
             <div class="card-body">
               <%= image_tag tweet.user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
               <h5 class="card-title d-inline mx-2">@<%= tweet.user %></h5>
-              <div class="card-text my-4"><%= tweet.content %></div>
+              <div class="card-text my-4"><%= tweet.content.html_safe %></div>
               <% if user_signed_in? %>
                 <% if tweet.retweeted?(current_user) %>
                   <%= button_to retweet_tweet_path(tweet), disabled:true, class:"btn btn-rt" do %>
