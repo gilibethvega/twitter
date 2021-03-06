@@ -26,19 +26,15 @@
             <li class="nav-item">
               <%= link_to "Find Users", home_users_path, class: "nav-link" %>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Link
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Link</a>
+            <li class="nav-item ">
+                <%= form_tag(find_tweets_path, method: :get) do %>
+                    <div class="form-group d-flex">
+                        <%= text_field_tag(:search, params[:search], class: "form-control rounded-pill text-13", placeholder: "Find tweets ...") %>
+                        <div class="align-middle">
+                            <%= submit_tag("Buscar", :class => "btn btn-primary btn-sm rounded-pill text-13 mr-2") %>
+                        </div>
+                    </div>
+                <% end %>
             </li>
           </ul>
           <div class="d-flex">

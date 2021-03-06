@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { 
     registrations: 'users/registrations' 
   }
+  get 'home/index'
+  get 'find_tweets', to: 'tweets#find_tweets', as: 'find_tweets'
+  get 'home/profile'
 
   post 'follow/:user_id', to: 'users#follow', as: 'users_follow'
   root 'tweets#index'

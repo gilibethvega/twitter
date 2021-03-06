@@ -1,0 +1,61 @@
+<div class="tweets-content">
+  <div class="timeline mx-auto">
+    <h5 class="mx-auto text-center">Find tweets</h5>
+    <% @tweets.each do |tweet| %>
+      <div class="card mb-3 mx-auto">
+        <div class="row no-gutters">
+          <div class="col-md-12">
+            <div class="card-body">
+              <%= image_tag tweet.user.photo_url, class:"d-inline rounded-circle", :width=> "50", :height=> "50"%>
+              <h5 class="card-title d-inline mx-2">@<%= tweet.user %></h5>
+              <p class="card-text my-4"><%= tweet.content %></p>
+              <% if user_signed_in? %>
+                <% if tweet.retweeted?(current_user) %>
+                  <%= button_to retweet_tweet_path(tweet), disabled:true, class:"btn btn-rt" do %>
+                    <i class="fas fa-retweet"></i>
+                  <% end %>
+                  <p class="mx-1 d-inline"><%= tweet.retweet_count %>
+                <% else %>
+                  <%= button_to retweet_tweet_path(tweet),  class:"btn-outline-rt" do %>
+                    <i class="fas fa-retweet"></i>
+                  <% end %>
+                  <p class="mx-1 d-inline"><%= tweet.retweet_count %></p>
+                <% end %>
+              <% end %>
+              <% if user_signed_in? %>
+                <% if tweet.liked?(current_user) %>
+                  <%= button_to like_tweet_path(tweet), class:"btn-rt like-button" do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                  <p class="mx-1 d-inline"><%= tweet.like_count %></p>
+                <% else %>
+                  <%= button_to like_tweet_path(tweet), class:"btn-like-light unlike-button" do %>
+                    <i class="fas fa-heart"></i>
+                  <% end %>
+                  <p class="mx-1 d-inline"><%= tweet.like_count %></p>
+                <% end %>
+              <% end %>
+              <div class= "links-tweets">
+                <p class="card-text d-inline mx-2"><small class="text-muted"><%= link_to time_ago_in_words(tweet.created_at)+' ago', tweet %> </small></p>
+                <% if tweet.user === current_user %>
+                  <%= link_to edit_tweet_path(tweet), class:"d-inline mx-2" do %>
+                    Edit <i class="fas fa-edit"></i>
+                  <% end %>
+                <% end %>
+                <% if tweet.user === current_user %>
+                  <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class:"d-inline mx-2"%>
+                <% end %>
+              </div>   
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <div>
+  <div class="row text-center">
+    <div  class="mx-auto">
+      <%= link_to_prev_page @tweets, 'Previous tweets', class:"btn btn-primary px-4 py-2 mx-2" %>
+      <%= link_to_next_page @tweets, 'Show more tweets', class:"btn btn-primary px-4 py-2 mx-2" %>
+    </div>
+  </div>
+</div>

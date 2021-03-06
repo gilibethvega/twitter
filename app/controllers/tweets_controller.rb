@@ -26,12 +26,25 @@ class TweetsController < ApplicationController
   end
   # GET /tweets or /tweets.json
   def index
-    if user_signed_in?
-      @tweets = Tweet.tweets_for_me(current_user).order('created_at DESC').page(params[:page])
+    if signed_in?
+      if( params[:search] && !params[:search].empty? )
+        @tweets = Tweet.tweets_for_me(current_user).where("content LIKE ?", "%#{params[:search]}%").order(created_at: :desc).page params[:page]
+      else
+        @tweets = Tweet.tweets_for_me(current_user).order(created_at: :desc).page params[:page]
+      end
+      @tweet = Tweet.new
     else
-      @tweets = Tweet.all.order('created_at DESC').page(params[:page])
+      @tweets = Tweet.order(created_at: 'desc').page params[:page]
+      redirect_to find_tweets_path
     end
-    @tweet = Tweet.new
+  end
+
+  def find_tweets
+    if( params[:search] && !params[:search].empty? )
+      @tweets = Tweet.where("content LIKE ?", "%#{params[:search]}%").order(created_at: :desc).page params[:page]
+    else
+      @tweets = Tweet.order(created_at: 'desc').page params[:page]
+    end
   end
 
   # GET /tweets/1 or /tweets/1.json

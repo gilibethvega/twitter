@@ -10,7 +10,7 @@ class Tweet < ApplicationRecord
 
   def content
     if source_tweet
-      'RT @'+ (source_tweet.user).to_s + ': ' + source_tweet.content
+      'RT @'+ (source_tweet.user).to_s + ': ' + source_tweet.content.to_s
     else
       super
     end 
