@@ -6,6 +6,7 @@ class Tweet < ApplicationRecord
   
   validates_length_of :content, :within => 1..140, :too_long => "can't be over 140 characters", :too_short => "can't be blank"
   # validates :retweet_id, uniqueness: { scope: :user_id }
+  scope :tweets_for_me, -> (user) { where(user_id: user.friends.pluck(:friend_id).push(user.id)) }
 
   def content
     if source_tweet

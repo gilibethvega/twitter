@@ -26,7 +26,11 @@ class TweetsController < ApplicationController
   end
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all.order('created_at DESC').page(params[:page])
+    if user_signed_in?
+      @tweets = Tweet.tweets_for_me(current_user).order('created_at DESC').page(params[:page])
+    else
+      @tweets = Tweet.all.order('created_at DESC').page(params[:page])
+    end
     @tweet = Tweet.new
   end
 
