@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+
   before_action :set_tweet, only: %i[ show edit update destroy retweet like ]
   before_action :authenticate_user!, only: %i[ edit update destroy retweet like ]
 

@@ -1,9 +1,10 @@
 class Tweet < ApplicationRecord
+  include ActionView::Helpers::UrlHelper
+  before_save :add_hashtags
   belongs_to :user
   belongs_to :source_tweet, optional: true, inverse_of: :retweets, class_name: 'Tweet', foreign_key: 'retweet_id'
   has_many :retweets, inverse_of: :source_tweet, class_name: 'Tweet', foreign_key: 'retweet_id'
   has_many :like, dependent: :destroy
-  
   validates_length_of :content, :within => 1..140, :too_long => "can't be over 140 characters", :too_short => "can't be blank"
   # validates :retweet_id, uniqueness: { scope: :user_id }
   scope :tweets_for_me, -> (user) { where(user_id: user.friends.pluck(:friend_id).push(user.id)) }
@@ -35,4 +36,17 @@ class Tweet < ApplicationRecord
   def like_count
     Like.where(tweet_id: id).pluck(:tweet_id).count
   end
+  def add_hashtags
+    new_array = []
+    self.content.split(' ').each do |word|
+      if word.start_with?('#')
+        word_parsed = word.sub '#','%23'
+        word = link_to( word, Rails.application.routes.url_helpers.root_path + '?search='+word_parsed )
+      end
+      new_array.push(word)
+    end
+
+    self.content = new_array.join(' ')
+  end
+
 end
