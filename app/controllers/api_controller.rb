@@ -2,6 +2,7 @@ class ApiController < ActionController::API
     before_action :set_tweet, only: %i[ edit update destroy ]
     def news
         @tweets = Tweet.all.limit(50).order(id: :desc)
+        #se crea vista de api#news que renderiza los campos solicitados
     end
 
     def tweets_dates

@@ -20,6 +20,6 @@ Rails.application.routes.draw do
 
   get 'api/news', to: "api#news"
   get 'api/:date/:date_two', to: "api#tweets_dates"
-
+  post 'tweets/create_tweet', to: "tweets#create_tweet"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
