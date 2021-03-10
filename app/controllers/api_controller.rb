@@ -5,8 +5,10 @@ class ApiController < ActionController::API
     end
 
     def tweets_dates
-        @twees_n = Tweet.where(:created_at => params[:date]..params[:date_two])
-        render json: @tweets_n
+      first_date = Date.strptime(params[:date], '%Y-%m-%d')
+      end_date = Date.strptime(params[:date_two], '%Y-%m-%d')
+      @twees_n = Tweet.all.where(created_at: first_date.midnight..end_date.end_of_day).order(id: :desc)
+      render json: @twees_n
     end
 
     private
