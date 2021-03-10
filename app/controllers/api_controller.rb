@@ -1,14 +1,9 @@
 class ApiController < ActionController::API
     before_action :set_tweet, only: %i[ edit update destroy ]
-    def fifty_tweets
-        response = []
-        @tweets = Tweet.all
-        @tweets.order(id: :desc).limit(50).each do |tweet|
-            content = tweet.content
-            response.push(content)
-        end
-        return render json: response
-      end
+    def news
+        @tweets = Tweet.all.limit(50).order(id: :desc)
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet

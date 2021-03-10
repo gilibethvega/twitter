@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   root 'tweets#index'
   get 'home/users'
 
-  get 'api/news', to: "api#fifty_tweets"
+  get 'api/news', to: "api#news"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
