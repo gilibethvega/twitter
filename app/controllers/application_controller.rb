@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 				elsif key_number+1 == n_word && validate
 					new_word = word.sub('/', '/find_tweets/')
 					hashtag += " #{new_word}"
-					new_array.push(hashtag)
+					new_array_hashtag.push(hashtag)
 				end
 			end
 		end

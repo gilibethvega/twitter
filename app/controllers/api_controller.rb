@@ -4,6 +4,11 @@ class ApiController < ActionController::API
         @tweets = Tweet.all.limit(50).order(id: :desc)
     end
 
+    def tweets_dates
+        @twees_n = Tweet.where(:created_at => params[:date]..params[:date_two])
+        render json: @tweets_n
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
