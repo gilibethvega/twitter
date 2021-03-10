@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
       end
       @tweet = Tweet.new
     else
-      @tweets = Tweet.order(created_at: 'desc').page params[:page]
+      @tweets = Tweet.where("content LIKE ?", "%#{params[:search]}%").order(created_at: 'desc').page params[:page]
       redirect_to find_tweets_path
     end
   end
