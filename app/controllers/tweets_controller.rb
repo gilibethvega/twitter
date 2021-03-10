@@ -1,8 +1,9 @@
 class TweetsController < ApplicationController
-
-  before_action :set_tweet, only: %i[ show edit update destroy retweet like ]
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
+  http_basic_authenticate_with name:"desafio", password:"latam", only: :create_tweet
+  before_action :set_tweet, only: %i[ show edit update destroy retweet like :create_tweet]
   before_action :authenticate_user!, only: %i[ edit update destroy retweet like ]
-
+  skip_before_action :verify_authenticity_token, :only => [:create_tweet]
   def retweet
     retweet = Tweet.new(retweet_id: @tweet.id, user: current_user)
     if retweet.save
@@ -48,6 +49,7 @@ class TweetsController < ApplicationController
     end
   end
 
+
   # GET /tweets/1 or /tweets/1.json
   def show
   end
@@ -75,7 +77,24 @@ class TweetsController < ApplicationController
       end
     end
   end
-
+  #POST para crear tweets desde api
+  def create_tweet
+    @tweet = Tweet.new(tweet_params)
+    def n_user
+      User.all.count
+    end
+    respond_to do |format|
+      if @tweet.save
+        format.json { render :show, status: :created, location: @tweet }
+      else
+        if @tweet.user_id > n_user
+          format.json { render json: 'Debes ingresar un user_id entre 1 y '+n_user.to_s }
+        else
+          format.json { render json: 'Debes ingresar un objeto con la siguiente estructura: { "content": "mi contenido", "user_id": 2}'}
+        end
+      end
+    end
+  end
   # PATCH/PUT /tweets/1 or /tweets/1.json
   def update
     respond_to do |format|

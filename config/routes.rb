@@ -13,10 +13,13 @@ Rails.application.routes.draw do
   }
   get 'home/index'
   get 'find_tweets', to: 'tweets#find_tweets', as: 'find_tweets'
-  get 'home/profile'
 
   post 'follow/:user_id', to: 'users#follow', as: 'users_follow'
   root 'tweets#index'
   get 'home/users'
+
+  get 'api/news', to: "api#news"
+  get 'api/:date/:date_two', to: "api#tweets_dates"
+  post 'tweets/create_tweet', to: "tweets#create_tweet"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
